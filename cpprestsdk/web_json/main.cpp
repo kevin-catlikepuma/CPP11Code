@@ -19,8 +19,7 @@ std::wstring TestJson()
 int wmain()
 {
 	std::wstring wstrJson = TestJson();
-	wstring wstTest = wstrJson.c_str();
-	cout << wstTest.c_str() << endl;
+	ucout << wstrJson.c_str() << endl;
 	system("pause.");
 	return 0;
 }
