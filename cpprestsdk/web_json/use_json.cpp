@@ -63,7 +63,15 @@ int wmain()
 	if (barray)
 	{
 		json::value& arr_obj = obj_json.at(U("array")); //想改变原有的值，必须是引用
+		bool bIsarray = arr_obj.is_array();
+		if (bIsarray)
+		{
+			int arr_size = arr_obj.size();
+			int i = 100;
+		}
 		json::value& ar1 = arr_obj[0];
+
+		bool bObject = ar1.is_object();
 		bool bar1 = ar1.has_field(U("A60Key"));
 		if (bar1)
 		{
