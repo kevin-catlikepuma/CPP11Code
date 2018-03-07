@@ -1,0 +1,13 @@
+条件变量：
+条件变量是C++11提供的另外一种用于等待的同步机制，它能阻塞一个或多个线程，直到收到另外一个线程发出的通知或者超时，才会唤醒当前阻塞的线程。
+条件变量需要和互斥量配合起来使用。
+
+	condition_variable，配合std::unique_lock<std::mutex>进行wait操作。见SimpleSyncQueue队列使用
+	condition_variable_any， 和任意带有lock，unlock语义的mutex搭配使用，比较灵活，但比ondition_variable效率差一些。见SyncQueue队列使用
+
+条件变量使用过程：
+1. 拥有条件变量的线程获取互斥量
+2. 循环检查某个条件，如果不满足，则阻塞直到条件满足；如果条件满足，则向下执行。
+3. 某个线程满足条件执行之后调用notify_one()或notify_all()唤醒一个或所有的等待线程。
+
+具体实现请见同步队列SyncQueue。
