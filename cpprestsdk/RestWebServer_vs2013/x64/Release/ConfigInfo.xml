@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ConfigInfo>
+	<ServerIP>192.111.111.80</ServerIP>
+	<SubscribeRole>
+		<check subscribe_status="check">true</check>
+		<recheck subscribe_status="reCheck">false</recheck>
+		<checkout subscribe_status="checkOut">false</checkout>
+	</SubscribeRole>
+	<TaskItem>
+		<Key>picNo</Key>
+		<ValuePath>/IDR/IDR_IMAGE/PICNO</ValuePath>
+	</TaskItem>
+	<TaskItem>
+		<Key>scanTime</Key>
+		<ValuePath>/IDR/IDR_IMAGE/SCANTIME</ValuePath>
+	</TaskItem>
+	<TaskItem>
+		<Key>serverPath</Key>
+		<ValuePath>/IDR/IDR_IMAGE/PATH</ValuePath>
+	</TaskItem>
+	<TaskItem>
+		<Key>plateNo</Key>
+		<ValuePath>/IDR/IDR_IMAGE/IDR_CHECK_UNIT/IDR_SIIG/inputinfo/general/container/name_vessel</ValuePath>
+	</TaskItem>
+	<TaskItem>
+		<Key>checkinTime</Key>
+		<ValuePath>/IDR/IDR_IMAGE/IDR_CHECK_UNIT/CHECKINTIME</ValuePath>
+	</TaskItem>
+</ConfigInfo>
