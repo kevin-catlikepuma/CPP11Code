@@ -21,28 +21,33 @@
 //bool parse (const std::string &document, Value &root, bool collectComments=true)
 //bool parse (std::istream &is, Value &root, bool collectComments=true)
 
-void parser_jsonfile()
+void ParserJsonFromFile()
 {
 	Json::Reader reader;
 	Json::Value	root;
 
-	std::ifstream ifs("E:\\FS_Projects\\demo.json", std::ios::binary); //open file example.json
+	std::ifstream ifs("example_styled_writer.json", std::ios::binary); //open file .json
 
 	if(reader.parse(ifs, root))
 	{
 		//success
 		std::string value1 = root["encoding"].asString();
 		Json::Value inObj = root["indent"];
-		int nValue = inObj["length"].asInt();
+		if(inObj.type() == Json::objectValue)
+		{
+			int nValue = inObj["length"].asInt();
 
+			Json::Value intObj = inObj["length"];
+			if(intObj.type() == Json::intValue)
+			{
+				int nValue1 = intObj.asInt();
+			}
+
+			int k = 1000;
+		}
 	}
-	else
-	{
-		//fail to parse
-		ifs.close();
-	}
-
-
+	
+	ifs.close();
 }
 
 /*
@@ -50,7 +55,7 @@ void parser_jsonfile()
 总结就是要判断是否含有key，使用isMember成员函数，value是否为null使用isNull成员函数，value是否为空可以用empty() 和 size()成员函数。
 */
 
-void parser_jsonstr()
+void ParserJsonFromString()
 {
 	std::string json_str = "{ \"encoding\": \"UTF-8\", \"tab-length\": [], \"plug-ins\": [\"python\", \"C++\", \"ruby\", \"perl\"], \"indent\": { \"length\": 3, \"use_space\": true}, \"objectlist\": [ {\"int\": 123}, {\"string\": \"kevin\"}, {\"bool\": false}]}";
 	Json::Reader reader;
@@ -89,7 +94,7 @@ void parser_jsonstr()
 		Json::ValueType type = arrayObj.type();
 		if(type == Json::arrayValue)
 		{
-			for(int i = 0; i < arrayObj.size(); i++)
+			for(int i = 0; i < static_cast<int>(arrayObj.size()); i++)
 			{
 				Json::Value obj = arrayObj[i];  // 取出列表中的对象
 				if(obj.type() == Json::stringValue)  // 判断列表中的对象是否为Json::stringValue
@@ -103,7 +108,7 @@ void parser_jsonstr()
 		Json::Value listObj = root["objectlist"];
 		if(listObj.type() == Json::arrayValue)
 		{
-			for(int i = 0; i < listObj.size(); i++)
+			for(int i = 0; i < static_cast<int>(listObj.size()); i++)
 			{
 				Json::Value obj = listObj[i];
 				if(obj.isMember("int"))  //判断json对象里是否含有key为"int"的元素
@@ -143,4 +148,98 @@ void parser_jsonstr()
 		ofs.close();
 	}
 
+}
+
+/*
+Json::Writer 和 Json::Reader相反，是把Json::Value对象写到string对象中。
+Json::Writer是个抽象类，被两个子类Json::FastWriter和Json::StyledWriter继承。 
+FastWriter就是无格式的写入，这样的Json看起来很乱没有格式；
+StyledWriter就是带有格式的写入，看起来会比较友好。
+*/
+void InsertRomveJsonIntoFile()
+{
+	Json::Reader reader;
+	Json::StyledWriter swriter;
+
+	std::ifstream ifs;
+	std::ofstream ofs;
+
+	ifs.open("example_styled_writer.json", std::ios::binary);
+	if(!ifs.is_open())
+	{
+		return;
+	}
+
+	Json::Value root;
+	if(reader.parse(ifs, root))
+	{
+		Json::Value::Members memkeys = root.getMemberNames();
+
+		//bool Value::removeIndex(ArrayIndex index, Value* removed)
+		Json::Value removeObj1;
+		bool bReturn = root.removeIndex(0, &removeObj1);
+		if(bReturn)
+		{
+			if(removeObj1.type() == Json::stringValue)
+			{
+				std::string strValue = removeObj1.asString();
+				int k = 1000;
+			}
+		}
+
+
+		Json::Value removeObj2 = root.removeMember("objectlist");
+		if(removeObj2.type() == Json::arrayValue)
+		{
+			for(int i = 0; i < static_cast<int>(removeObj2.size()); i++)
+			{
+				Json::Value obj = removeObj2[i];
+				if(obj.isMember("int"))  //判断json对象里是否含有key为"int"的元素
+				{
+					int nValue = obj["int"].asInt();
+					int k = 1000;
+				}
+				
+				if(obj.isMember("bool"))
+				{
+					bool bValue = obj["bool"].asBool();
+					int k = 1000;
+				}
+
+				if(obj.isMember("string"))
+				{
+					std::string strValue = obj["string"].asString();
+					int k = 1000;
+				}
+			}
+		}
+
+		memkeys = root.getMemberNames();
+
+		Json::Value insertObj1;
+		Json::Value insertObj2;
+		Json::Value insertArrayObj;
+
+		insertObj1["sex"] = "male";
+		insertObj2["contry"] = "China";
+		insertArrayObj.append(insertObj1);
+		insertArrayObj.append(insertObj2);
+
+		root["sex"] = "male";
+		root["contry"] = "China";
+		root["info"] = insertArrayObj;
+
+		std::string strJson = root.toStyledString();
+		std::string strWriter = swriter.write(root);
+		ofs.open("insert_writer.json");
+		if(ofs.is_open())
+		{
+			//ofs.write(strWriter.c_str(), strWriter.length());
+			ofs << strWriter;
+		}
+		
+		ofs.close();
+	}
+
+	ifs.close();
 }
