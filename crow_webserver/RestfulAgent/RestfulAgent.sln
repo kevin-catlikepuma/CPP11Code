@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RestfulAgent", "RestfulAgent\RestfulAgent.vcxproj", "{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RestfulAgentTest", "RestfulAgentTest\RestfulAgentTest.vcxproj", "{B2C53362-6276-4537-A5D8-97535368866E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Debug|Win32.Build.0 = Debug|Win32
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Debug|x64.ActiveCfg = Debug|x64
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Debug|x64.Build.0 = Debug|x64
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Release|Win32.ActiveCfg = Release|Win32
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Release|Win32.Build.0 = Release|Win32
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Release|x64.ActiveCfg = Release|x64
+		{EB2FFB24-3DA2-48F9-BD09-B91C0B928FC9}.Release|x64.Build.0 = Release|x64
+		{B2C53362-6276-4537-A5D8-97535368866E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2C53362-6276-4537-A5D8-97535368866E}.Debug|Win32.Build.0 = Debug|Win32
+		{B2C53362-6276-4537-A5D8-97535368866E}.Debug|x64.ActiveCfg = Debug|Win32
+		{B2C53362-6276-4537-A5D8-97535368866E}.Release|Win32.ActiveCfg = Release|Win32
+		{B2C53362-6276-4537-A5D8-97535368866E}.Release|Win32.Build.0 = Release|Win32
+		{B2C53362-6276-4537-A5D8-97535368866E}.Release|x64.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
